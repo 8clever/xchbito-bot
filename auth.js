@@ -25,6 +25,7 @@ let token = false;
 
 module.exports = function(cb) {
 	app.get("/code", function(req, res, next) {
+		console.log("here")
 		oauth2.getOAuthAccessToken(
 			req.query.code,
 			{'redirect_uri': `http://${DOMAIN}:${PORT}/code/`},

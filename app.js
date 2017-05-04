@@ -29,9 +29,9 @@ Bot.connect().then(() => {
 		console.log(message)
 	});
 
-	setTimeout(function() {
+	setInterval(function() {
 		Bot.msg("Skynet returning from hell!!!");
-	}, 60000);
+	}, 60000 * 10);
 
 	console.log("Bot runned");
 }).catch(err => {

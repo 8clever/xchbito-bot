@@ -5,7 +5,7 @@ const OAuth2 = require("oauth").OAuth2;
 const clientID = "aqh3wb4avo6r5ig0dvfl1n3c0vvi7r";
 const clientSecret = "jd47lcd5vhfitewy8qxtpbsp06bdo1";
 
-const PORT = 3000;
+const PORT = 80;
 const DOMAIN = "50.112.31.228";
 const oauth2 = new OAuth2(
 	clientID,

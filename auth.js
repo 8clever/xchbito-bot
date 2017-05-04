@@ -7,6 +7,7 @@ const clientSecret = "jd47lcd5vhfitewy8qxtpbsp06bdo1";
 const safe = require("safe");
 const PORT = 80;
 const DOMAIN = "50.112.31.228";
+const request = require("request");
 const oauth2 = new OAuth2(
 	clientID,
 	clientSecret,
@@ -27,7 +28,6 @@ module.exports = function(cb) {
 	app.get("/code", function(req, res, next) {
 		console.log(req.query);
 		console.log(req.body);
-
 		oauth2.getOAuthAccessToken(
 			req.query.code,
 			{'redirect_uri': `http://${DOMAIN}:${PORT}/code/`},
@@ -42,9 +42,6 @@ module.exports = function(cb) {
 
 	app.listen(PORT);
 	console.log("server for auth runned!");
-	oauth2.get(authURL, null, function(err, html){
-		if (/redirected/.test(html))
-			console.log("redirected success!");
-	});
+	request.get(authURL, function() {});
 };
 

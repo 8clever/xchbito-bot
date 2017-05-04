@@ -9,9 +9,6 @@
   "author": "Ivan Vityaev",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.15.2",
-    "oauth": "^0.9.15",
-    "request": "^2.81.0",
-    "safe": "^0.4.3"
+    "node-twitchbot": "^2.0.4"
   }
 }

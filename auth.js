@@ -6,6 +6,7 @@ const clientID = "aqh3wb4avo6r5ig0dvfl1n3c0vvi7r";
 const clientSecret = "jd47lcd5vhfitewy8qxtpbsp06bdo1";
 
 const PORT = 3000;
+const DOMAIN = "50.112.31.228";
 const oauth2 = new OAuth2(
 	clientID,
 	clientSecret,
@@ -26,7 +27,7 @@ module.exports = function(cb) {
 	app.get("/code", function(req, res, next) {
 		oauth2.getOAuthAccessToken(
 			req.query.code,
-			{'redirect_uri': `http://localhost:${PORT}/code/`},
+			{'redirect_uri': `http://${DOMAIN}:${PORT}/code/`},
 			safe.sure(cb, (access_token, refresh_token, results) => {
 				if (results.error)
 					return cb(results.error);

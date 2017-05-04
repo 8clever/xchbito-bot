@@ -25,9 +25,12 @@ let token = false;
 
 module.exports = function(cb) {
 	app.get("/code", function(req, res, next) {
+		console.log(req.query);
+		console.log(req.body);
+
 		oauth2.getOAuthAccessToken(
 			req.query.code,
-			{'redirect_uri': `http://${DOMAIN}/code/`},
+			{'redirect_uri': `http://${DOMAIN}:${PORT}/code/`},
 			safe.sure(cb, (access_token, refresh_token, results) => {
 				if (results.error)
 					return cb(results.error);
@@ -35,16 +38,6 @@ module.exports = function(cb) {
 				cb(null, access_token);
 			})
 		);
-	});
-
-	app.get("/", function(req, res, next) {
-		res.send(`
-			<html>
-				<body>
-					<a href="${authURL}">Click Here</a>
-				</body>
-			</html>
-		`)
 	});
 
 	app.listen(PORT);

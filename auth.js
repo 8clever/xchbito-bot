@@ -37,6 +37,16 @@ module.exports = function(cb) {
 		);
 	});
 
+	app.get("/", function(req, res, next) {
+		res.send(`
+			<html>
+				<body>
+					<a href="${authURL}">Click Here</a>
+				</body>
+			</html>
+		`)
+	});
+
 	app.listen(PORT);
 	console.log("server for auth runned!");
 	oauth2.get(authURL, null, function(err, html){

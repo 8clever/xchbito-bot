@@ -54,7 +54,8 @@ function getJokeList (msg, level) {
 		return this.msg(`${joke.id} - #${idx}`);
 	});
 	
-	this.msg(send.join(" | "));
+	console.log(send)
+	this.msg(send.join("  "));
 }
 
 Bot.connect().then(() => {

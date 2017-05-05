@@ -80,8 +80,6 @@ Bot.connect().then(() => {
 		saveJoke.call(Bot, chatter.msg);
 		getJokeList.call(Bot, chatter.msg, chatter.level);
 		rmJoke.call(Bot, chatter.msg, chatter.level);
-		
-		console.log(chatter.level);
 	});
 
 	setInterval(function() {

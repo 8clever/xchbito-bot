@@ -9,6 +9,8 @@
   "author": "Ivan Vityaev",
   "license": "MIT",
   "dependencies": {
+    "json-collections": "^0.2.0",
+    "lodash": "^4.17.4",
     "node-twitchbot": "^2.0.4"
   }
 }

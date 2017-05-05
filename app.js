@@ -28,7 +28,8 @@ function jokeTo (msg) {
 	console.log(jokes);
 	
 	let joke = jokes[_.random(0, jokes.lenght - 1)];
-	
+	console.log(joke, jokes.lenght)
+	console.log(_.random(0, jokes.lenght - 1));
 	if (!joke) return;
 	this.msg(`${joke.id} @${match[1]}`);
 }

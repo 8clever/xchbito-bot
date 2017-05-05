@@ -51,11 +51,10 @@ function getJokeList (msg, level) {
 	if (!(/!joke !list/.test(msg) && level === MODERATOR)) return;
 	
 	let send = _.map(collections.jokes.toJSON(), (joke, idx) => {
-		return this.msg(`${joke.id} - #${idx}`);
+		return `${joke.id} - #${idx}`;
 	});
 	
-	console.log(send)
-	this.msg(send.join("  "));
+	this.msg(send.join(" | "));
 }
 
 Bot.connect().then(() => {

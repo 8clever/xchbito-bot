@@ -23,7 +23,17 @@ function jokeTo (msg) {
 	let joke = jokes[_.random(0, collections.jokes.size() - 1)];
 
 	if (!joke) return;
-	this.msg(`${joke.id} @${match[1]}`);
+	
+	let name = match[1];
+	let string = joke.id;
+	let regex = /<name>/;
+	
+	if (regex.test(string))
+		string = string.replace(regex, name);
+	else
+		string = `${string} ${name}`;
+	
+	this.msg(string);
 }
 
 function sayHello (msg) {

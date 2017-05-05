@@ -26,7 +26,9 @@ function jokeTo (msg) {
 	
 	let jokes = collections.jokes.toJSON();
 	let joke = jokes[_.random(0, jokes.lenght - 1)];
-	this.msg(`${joke} @${match[1]}`);
+	
+	if (!joke) return;
+	this.msg(`${joke.id} @${match[1]}`);
 }
 
 function sayHello (msg) {

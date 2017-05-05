@@ -25,11 +25,8 @@ function jokeTo (msg) {
 	if (!(match && match[1])) return;
 	
 	let jokes = collections.jokes.toJSON();
-	console.log(jokes);
-	
-	let joke = jokes[_.random(0, jokes.lenght - 1)];
-	console.log(joke, jokes.lenght)
-	console.log(_.random(0, jokes.lenght - 1));
+	let joke = jokes[_.random(0, collections.jokes.size() - 1)];
+
 	if (!joke) return;
 	this.msg(`${joke.id} @${match[1]}`);
 }

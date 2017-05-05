@@ -13,11 +13,6 @@ const Bot = new TwitchBot({
 	channel  : 'hikka_live'
 });
 
-function jokeForMom (msg) {
-	if(!/!пошути_про_маму/.test(msg)) return;
-	this.msg('шутка про маму)))');
-}
-
 function jokeTo (msg) {
 	if(!/!joke @([\D\d]*)/.test(msg)) return;
 	
@@ -80,7 +75,6 @@ Bot.connect().then(() => {
 		if (chatter.user != BOT_NAME)
 			countMsg++;
 		
-		jokeForMom.call(Bot, chatter.msg);
 		jokeTo.call(Bot, chatter.msg);
 		sayHello.call(Bot, chatter.msg);
 		saveJoke.call(Bot, chatter.msg);

@@ -24,7 +24,7 @@ function jokeTo (msg) {
 
 	if (!joke) return;
 	
-	let name = match[1];
+	let name = "@" + match[1];
 	let string = joke.id;
 	let regex = /<name>/;
 	

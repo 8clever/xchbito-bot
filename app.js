@@ -3,7 +3,7 @@ const BOT_NAME = "xchbitobot";
 const Collection = require('json-collections');
 const _ = require("lodash");
 const collections = Object.freeze({
-	jokes: Collection({name: 'jokes', filepath: '/db/jokes' })
+	jokes: Collection({name: 'jokes', filepath: 'jokes' })
 })
 
 const Bot = new TwitchBot({
@@ -25,6 +25,8 @@ function jokeTo (msg) {
 	if (!(match && match[1])) return;
 	
 	let jokes = collections.jokes.toJSON();
+	console.log(jokes);
+	
 	let joke = jokes[_.random(0, jokes.lenght - 1)];
 	
 	if (!joke) return;

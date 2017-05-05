@@ -47,6 +47,17 @@ function saveJoke (msg) {
 	collections.jokes.persist();
 }
 
+function rmJoke (msg, level) {
+	let match = msg.match(/!joke !pop #(\d*)/);
+	if (!(match && level === MODERATOR)) return;
+	
+	let joke = collections.jokes.toJSON()[match[1]];
+	if (!joke) return;
+	
+	collections.jokes.remove(joke);
+	this.msg(`Joke [${joke.id}] removed success.`);
+} 
+
 function getJokeList (msg, level) {
 	if (!(/!joke !list/.test(msg) && level === MODERATOR)) return;
 	
@@ -71,6 +82,7 @@ Bot.connect().then(() => {
 		sayHello.call(Bot, chatter.msg);
 		saveJoke.call(Bot, chatter.msg);
 		getJokeList.call(Bot, chatter.msg, chatter.level);
+		rmJoke.call(Bot, chatter.msg, chatter.level);
 	});
 
 	setInterval(function() {

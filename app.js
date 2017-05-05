@@ -2,7 +2,7 @@ const TwitchBot = require('node-twitchbot');
 const BOT_NAME = "xchbitobot";
 const Collection = require('json-collections');
 const _ = require("lodash");
-const collectoins = Object.freeze({
+const collections = Object.freeze({
 	jokes: Collection({name: 'jokes', filepath: '/db/jokes' })
 })
 
@@ -24,7 +24,7 @@ function jokeTo (msg) {
 
 	if (!(match && match[1])) return;
 	
-	let jokes = collectoins.jokes.toJSON();
+	let jokes = collections.jokes.toJSON();
 	let joke = jokes[_.random(0, jokes.lenght - 1)];
 	this.msg(`${joke} @${match[1]}`);
 }
@@ -40,7 +40,7 @@ function saveJoke (msg) {
 	let match = msg.match(/!joke !push ([\d\D]*)/);
 	if (!(match && match[1])) return;
 	
-	collectoins.jokes.add({id: match[1]});
+	collections.jokes.add({id: match[1]});
 	collections.jokes.persist();
 }
 

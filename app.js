@@ -5,6 +5,7 @@ const _ = require("lodash");
 const collections = Object.freeze({
 	jokes: Collection({name: 'jokes', filepath: 'jokes' })
 })
+const MODERATOR = "mod";
 
 const Bot = new TwitchBot({
 	username : BOT_NAME,
@@ -46,6 +47,17 @@ function saveJoke (msg) {
 	collections.jokes.persist();
 }
 
+function getJokeList (msg, level) {
+	if (!(/!joke !list/ && level === MODERATOR)) return;
+	
+	let send = _.reduce(collections.jokes.toJSON(), (memo, joke, idx) => {
+		memo += `${joke.id} - index ${idx} \n`;
+		return memo;
+	}, "");
+	
+	this.msg(send);
+}
+
 Bot.connect().then(() => {
 	var countMsg = 0;
 	
@@ -59,6 +71,7 @@ Bot.connect().then(() => {
 		jokeTo.call(Bot, chatter.msg);
 		sayHello.call(Bot, chatter.msg);
 		saveJoke.call(Bot, chatter.msg);
+		getJokeList.call(Bot, chatter.msg, chatter.level);
 	});
 
 	setInterval(function() {

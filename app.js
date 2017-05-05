@@ -48,12 +48,9 @@ function saveJoke (msg) {
 
 function rmJoke (msg, level) {
 	let match = msg.match(/!joke !pop #(\d*)/);
-	
-	console.log(match);
 	if (!(match && level === MODERATOR)) return;
 	
 	let joke = collections.jokes.toJSON()[match[1]];
-	console.log(joke)
 	if (!joke) return;
 	
 	collections.jokes.remove(joke);
@@ -66,6 +63,8 @@ function getJokeList (msg, level) {
 	let send = _.map(collections.jokes.toJSON(), (joke, idx) => {
 		return `${joke.id} - #${idx}`;
 	});
+	
+	if (!send.length) return this.msg("Joke list is empty.");
 	
 	this.msg(send.join(" | "));
 }

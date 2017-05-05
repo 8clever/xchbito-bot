@@ -22,7 +22,6 @@ function jokeTo (msg) {
 	if(!/!joke @([\D\d]*)/.test(msg)) return;
 	
 	let match = msg.match(/!joke @([\D\d]*)/);
-
 	if (!(match && match[1])) return;
 	
 	let jokes = collections.jokes.toJSON();
@@ -49,9 +48,12 @@ function saveJoke (msg) {
 
 function rmJoke (msg, level) {
 	let match = msg.match(/!joke !pop #(\d*)/);
+	
+	console.log(match);
 	if (!(match && level === MODERATOR)) return;
 	
 	let joke = collections.jokes.toJSON()[match[1]];
+	console.log(joke)
 	if (!joke) return;
 	
 	collections.jokes.remove(joke);

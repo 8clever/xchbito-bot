@@ -54,6 +54,8 @@ function rmJoke (msg, level) {
 	if (!joke) return;
 	
 	collections.jokes.remove(joke);
+	collections.jokes.persist();
+	
 	this.msg(`Joke [${joke.id}] removed success.`);
 } 
 

@@ -48,14 +48,11 @@ function saveJoke (msg) {
 }
 
 function getJokeList (msg, level) {
-	if (!(/!joke !list/ && level === MODERATOR)) return;
+	if (!(/!joke !list/.test(msg) && level === MODERATOR)) return;
 	
-	let send = _.reduce(collections.jokes.toJSON(), (memo, joke, idx) => {
-		memo += `${joke.id} - index ${idx} \n`;
-		return memo;
-	}, "");
-	
-	this.msg(send);
+	_.each(collections.jokes.toJSON(), (memo, joke, idx) => {
+		this.msg(`${joke.id} - index ${idx}`);
+	});
 }
 
 Bot.connect().then(() => {

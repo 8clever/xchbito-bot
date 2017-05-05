@@ -50,7 +50,7 @@ function saveJoke (msg) {
 function getJokeList (msg, level) {
 	if (!(/!joke !list/.test(msg) && level === MODERATOR)) return;
 	
-	_.each(collections.jokes.toJSON(), (memo, joke, idx) => {
+	_.each(collections.jokes.toJSON(), (joke, idx) => {
 		this.msg(`${joke.id} - index ${idx}`);
 	});
 }

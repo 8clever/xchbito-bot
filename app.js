@@ -3,7 +3,7 @@ const BOT_NAME = "xchbitobot";
 const Collection = require('json-collections');
 const _ = require("lodash");
 const collectoins = Object.freeze({
-	jokes: Collection( 'jokes', { dir: './db/jokes' })
+	jokes: Collection({name: 'jokes', filepath: '/db/jokes' })
 })
 
 const Bot = new TwitchBot({

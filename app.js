@@ -10,7 +10,7 @@ const cfg = Object.freeze({
 		reconnect: true
 	},
 	identity: {
-		username: "xchbito",
+		username: "xchbitobot",
 		password: "oauth:lyrfpe260onmdi74rvpwh0krmiqaa5"
 	},
 	channels: [

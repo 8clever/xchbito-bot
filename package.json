@@ -11,6 +11,7 @@
   "dependencies": {
     "json-collections": "^0.2.0",
     "lodash": "^4.17.4",
-    "node-twitchbot": "^2.0.4"
+    "moment": "^2.18.1",
+    "tmi.js": "^1.2.0"
   }
 }

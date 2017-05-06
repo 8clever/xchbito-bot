@@ -7,16 +7,16 @@ module.exports = function(Bot, cfg) {
 		_.values(require('./mark-commands')(cfg, Bot))
 	);
 
-	Bot.on("chat", function (channel, { user, mod }, message, self) {
-		if (user !== cfg.identity.username)
+	Bot.on("chat", function (channel, { username, mod }, msg, self) {
+		if (username !== cfg.identity.username)
 			countMsg++;
 
-		function msg (message) {
+		function msgFn (message) {
 			Bot.action(channel, message);
 		}
 
 		_.each(commands, fn => {
-			fn.call({ msg }, message, mod, channel);
+			fn.call({ msg: msgFn }, { msg, mod, channel, username });
 		});
 	});
 

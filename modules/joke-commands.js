@@ -3,7 +3,7 @@ const _ = require("lodash");
 module.exports = function({ collections }) {
 	return {
 
-		jokeTo: function (msg) {
+		jokeTo: function ({ msg }) {
 			if(!/!joke @([\D\d]*)/.test(msg)) return;
 
 			let match = msg.match(/!joke @([\D\d]*)/);
@@ -26,21 +26,24 @@ module.exports = function({ collections }) {
 			this.msg(string);
 		},
 
-		saveJoke: function  (msg) {
+		saveJoke: function  ({ msg, username }) {
 			if (!/!joke !push/.test(msg)) return;
 
 			let match = msg.match(/!joke !push ([\d\D]*)/);
 			if (!(match && match[1])) return;
 
-			collections.jokes.add({id: match[1]});
+			collections.jokes.add({
+				id: match[1],
+				username
+			});
 			collections.jokes.persist();
 
 			this.msg(`Joke ${match[1]} added successfully.`);
 		},
 
-		rmJoke: function (msg, level) {
+		rmJoke: function ({ msg, mod }) {
 			let match = msg.match(/!joke !pop #(\d*)/);
-			if (!(match && level)) return;
+			if (!(match && mod)) return;
 
 			let joke = collections.jokes.toJSON()[match[1]];
 			if (!joke) return;
@@ -51,16 +54,12 @@ module.exports = function({ collections }) {
 			this.msg(`Joke [${joke.id}] removed successfully.`);
 		},
 
-		getJokeList: function (msg, level) {
-			if (!(/!joke !list/.test(msg) && level)) return;
+		getJokeList: function ({ msg, mod }) {
+			if (!(/!joke !list/.test(msg) && mod)) return;
 
-			let send = _.map(collections.jokes.toJSON(), (joke, idx) => {
-				return `${joke.id} - #${idx}`;
+			_.each(collections.jokes.toJSON(), (joke, idx) => {
+				this.msg(`${joke.id} - ${joke.username && `@${joke.username} -` || ""} #${idx}`);
 			});
-
-			if (!send.length) return this.msg("Joke list is empty.");
-
-			this.msg(send.join(" | "));
 		}
 	}
 };

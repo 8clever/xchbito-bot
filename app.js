@@ -10,7 +10,7 @@ const cfg = Object.freeze({
 		reconnect: true
 	},
 	identity: {
-		username: "xchbitobot",
+		username: "xchbito",
 		password: "oauth:lyrfpe260onmdi74rvpwh0krmiqaa5"
 	},
 	channels: [
@@ -25,6 +25,5 @@ const Bot = new tmi.client(cfg);
 Bot.connect().then(() => {
 	Bot.color(cfg.color);
 	require("./modules/bot")(Bot, cfg);
-	//Bot.disconnect()
 });
 

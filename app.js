@@ -14,7 +14,8 @@ const cfg = Object.freeze({
 		password: "oauth:lyrfpe260onmdi74rvpwh0krmiqaa5"
 	},
 	channels: [
-		"hikka_live"
+		"hikka_live",
+		"8clever"
 	],
 	collections: {
 		jokes: Collection({name: 'jokes', filepath: 'jokes' })

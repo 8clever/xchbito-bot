@@ -60,6 +60,8 @@ module.exports = function({ collections }) {
 			_.each(collections.jokes.toJSON(), (joke, idx) => {
 				this.msg(`${joke.id} - ${joke.username && `@${joke.username} -` || ""} #${idx}`);
 			});
+
+			if (!collections.jokes.size()) this.msg("Jokes list is empty");
 		}
 	}
 };

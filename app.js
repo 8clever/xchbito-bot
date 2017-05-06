@@ -25,5 +25,6 @@ const Bot = new tmi.client(cfg);
 Bot.connect().then(() => {
 	Bot.color(cfg.color);
 	require("./modules/bot")(Bot, cfg);
+	//Bot.disconnect()
 });
 

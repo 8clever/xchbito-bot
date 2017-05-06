@@ -12,7 +12,7 @@ module.exports = function(Bot, cfg) {
 			countMsg++;
 
 		function msg (message) {
-			Bot.say(channel, message);
+			Bot.action(channel, message);
 		}
 
 		_.each(commands, fn => {

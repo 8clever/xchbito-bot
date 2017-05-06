@@ -15,7 +15,8 @@ const cfg = Object.freeze({
 	},
 	channels: [
 		"hikka_live",
-		"8clever"
+		"8clever",
+		"feeddestroyer"
 	],
 	collections: {
 		jokes: Collection({name: 'jokes', filepath: 'jokes' })

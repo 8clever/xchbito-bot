@@ -21,7 +21,11 @@ const cfg = Object.freeze({
 	],
 	collections: {
 		jokes: Collection({name: 'jokes', filepath: 'jokes' })
-	}
+	},
+	bots: [
+		"nightbot",
+		"xchbitobot"
+	]
 });
 
 tmi.client.prototype.getUsers = function(channel, cb) {
@@ -36,10 +40,12 @@ tmi.client.prototype.getUsers = function(channel, cb) {
 			"Client-ID": this.getOptions().options.clientId
 		}
 	}, safe.sure_result(cb, (res, body) => {
-		return _.union(
+		let users = _.union(
 			_.get(body, "chatters.moderators", []),
 			_.get(body, "chatters.viewers", [])
 		);
+		users = _.reject(users, u => _.includes(this.getOptions().bots, u));
+		return users;
 	}));
 };
 

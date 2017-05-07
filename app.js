@@ -24,14 +24,22 @@ const cfg = Object.freeze({
 	}
 });
 
-tmi.client.prototype.getUsers = function({ channel }, cb) {
+tmi.client.prototype.getUsers = function(channel, cb) {
+	let hashRegex = /#/;
+
+	if (hashRegex.test(channel))
+		channel = channel.replace(hashRegex, "");
+
 	this.api({
 		url: `https://tmi.twitch.tv/group/user/${channel}/chatters`,
 		headers: {
 			"Client-ID": this.getOptions().options.clientId
 		}
 	}, safe.sure_result(cb, (res, body) => {
-		return _.union(body.chatters.moderators, body.chatters.viewers);
+		return _.union(
+			_.get(body, "chatters.moderators", []),
+			_.get(body, "chatters.viewers", [])
+		);
 	}));
 };
 

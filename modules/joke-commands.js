@@ -28,7 +28,7 @@ module.exports = function({ collections }, Bot) {
 
 			if (regexRandom.test(string))
 				return Bot.getUsers(channel, (err, users) => {
-					if (err) return;
+					if (err) return console.log(err);
 
 					let rUser = users[_.random(0, users.length - 1)];
 					string = string.replace(regexRandom, `@${rUser}`);

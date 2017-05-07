@@ -12,6 +12,7 @@
     "json-collections": "^0.2.0",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
+    "safe": "^0.4.3",
     "tmi.js": "^1.2.0"
   }
 }

@@ -1,10 +1,12 @@
 const tmi = require("tmi.js");
 const Collection = require('json-collections');
+const safe = require("safe");
+const _ = require("lodash");
 const cfg = Object.freeze({
 	color: "CadetBlue",
 	options: {
 		clientId: "aqh3wb4avo6r5ig0dvfl1n3c0vvi7r",
-		debug: true
+		debug: false
 	},
 	connection: {
 		reconnect: true
@@ -21,6 +23,17 @@ const cfg = Object.freeze({
 		jokes: Collection({name: 'jokes', filepath: 'jokes' })
 	}
 });
+
+tmi.client.prototype.getUsers = function({ channel }, cb) {
+	this.api({
+		url: `https://tmi.twitch.tv/group/user/${channel}/chatters`,
+		headers: {
+			"Client-ID": this.getOptions().options.clientId
+		}
+	}, safe.sure_result(cb, (res, body) => {
+		return _.union(body.chatters.moderators, body.chatters.viewers);
+	}));
+};
 
 const Bot = new tmi.client(cfg);
 Bot.connect().then(() => {

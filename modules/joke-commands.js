@@ -1,20 +1,9 @@
 const _ = require("lodash");
 const safe = require("safe");
 
-module.exports = function({ collections, options }, Bot) {
-	let getRandomUser = function({ channel }, cb) {
-		Bot.api({
-		    url: `https://tmi.twitch.tv/group/user/${channel}/chatters`,
-		    headers: {
-		    	"Client-ID": options.clientId
-		    }
-		}, safe.sure_result(cb, (res, body) => {
-			let users = _.union(body.chatters.moderators, body.chatters.viewers);
-			return users[_.random(0, users.length - 1)];
-		}));
-	}
-		
-	let fns = {
+module.exports = function({ collections }, Bot) {
+
+	return {
 
 		jokeTo: function ({ msg, channel }) {
 			if(!/!joke @([\D\d]*)/.test(msg)) return;
@@ -30,21 +19,22 @@ module.exports = function({ collections, options }, Bot) {
 			let name = "@" + match[1];
 			let string = joke.id;
 			let regex = /<name>/;
-			let regexRandom = /<rname>/
+			let regexRandom = /<rname>/;
 
 			if (regex.test(string))
 				string = string.replace(regex, name);
 			else
 				string = `${string} ${name}`;
-			
+
 			if (regexRandom.test(string))
-				return getRandomUser({ channel }, (err, randomName) => {
+				return Bot.getUsers(channel, (err, users) => {
 					if (err) return;
-					
-					string = string.replace(regexRandom, `@${randomName}`);
+
+					let rUser = users[_.random(0, users.length - 1)];
+					string = string.replace(regexRandom, `@${rUser}`);
 					this.msg(string);
-				})
-			
+				});
+
 			this.msg(string);
 		},
 
@@ -86,7 +76,5 @@ module.exports = function({ collections, options }, Bot) {
 			if (!collections.jokes.size()) this.msg("Jokes list is empty");
 		}
 	};
-	
-	return fns;
 };
 

@@ -23,6 +23,7 @@ const cfg = Object.freeze({
 		jokes: Collection({name: 'jokes', filepath: 'jokes' })
 	},
 	bots: [
+		"chatdb",
 		"faegwent",
 		"nightbot",
 		"xchbitobot"

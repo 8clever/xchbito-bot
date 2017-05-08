@@ -17,6 +17,15 @@ const cfg = Object.freeze({
 	},
 	channels: [
 		"hikka_live",
+		"hikka_live",
+		"hikka_live",
+		"hikka_live",
+		"hikka_live",
+		"hikka_live",
+		"hikka_live",
+		"hikka_live",
+		"hikka_live",
+		"hikka_live",
 		"8clever"
 	],
 	collections: {

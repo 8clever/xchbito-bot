@@ -6,7 +6,7 @@ const cfg = Object.freeze({
 	color: "CadetBlue",
 	options: {
 		clientId: "aqh3wb4avo6r5ig0dvfl1n3c0vvi7r",
-		debug: false
+		debug: true
 	},
 	connection: {
 		reconnect: true

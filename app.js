@@ -17,15 +17,6 @@ const cfg = Object.freeze({
 	},
 	channels: [
 		"hikka_live",
-		"hikka_live",
-		"hikka_live",
-		"hikka_live",
-		"hikka_live",
-		"hikka_live",
-		"hikka_live",
-		"hikka_live",
-		"hikka_live",
-		"hikka_live",
 		"8clever"
 	],
 	collections: {
@@ -60,9 +51,14 @@ tmi.client.prototype.getUsers = function(channel, cb) {
 	}));
 };
 
-const Bot = new tmi.client(cfg);
-Bot.connect().then(() => {
-	Bot.color(cfg.color);
-	require("./modules/bot")(Bot, cfg);
-});
+_.each([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], n => {
+	let _cfg = _.cloneDeep(cfg);
+	_cfg.identity.username = `${_cfg.identity.username}_${n}`;
+	const Bot = new tmi.client(_cfg);
+	Bot.connect().then(() => {
+		Bot.color(_cfg.color);
+		require("./modules/bot")(Bot, _cfg);
+	});
+})
+
 

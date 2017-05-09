@@ -23,7 +23,7 @@ module.exports = function(Bot, cfg) {
 	setInterval(function() {
 		if (countMsg > 5) {
 			_.each(cfg.channels, ch => {
-				Bot.action(ch, "Флоля + СэрГей = <3 <3 <3");
+				Bot.action(ch, "@milana_lol + @Hikka_live = <3 <3 <3");
 			});
 
 			countMsg = 0;

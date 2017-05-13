@@ -28,7 +28,7 @@ module.exports = function(Bot, cfg) {
 
 			countMsg = 0;
 		}
-	}, 60000 * 30);
+	}, 60000 * 120);
 	
 	console.log("Bot runned!");
 };

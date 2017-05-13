@@ -19,16 +19,16 @@ module.exports = function(Bot, cfg) {
 			fn.call({ msg: msgFn }, { msg, mod, channel, username });
 		});
 	});
-
+	
 	setInterval(function() {
 		if (countMsg > 5) {
 			_.each(cfg.channels, ch => {
-				Bot.action(ch, "@8clever + @takumi_chan = <3 <3 <3");
+				Bot.action(ch, "За русь, за славу, за жизнь!!! (c) @xchbito");
 			});
 
 			countMsg = 0;
 		}
-	}, 60000 * 10);
-
+	}, 60000 * 30);
+	
 	console.log("Bot runned!");
 };

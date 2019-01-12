@@ -2,7 +2,7 @@
 	"name": "xchbito-bot",
 	"version": "1.0.0",
 	"description": "",
-	"main": "desktopMain.js",
+	"main": "desktop.js",
 	"scripts": {
 		"start": "node app",
 		"desktop": "export DEV=true && electron .",

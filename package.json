@@ -1,17 +1,33 @@
 {
-  "name": "xchbito-bot",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "scripts": {
-    "start": "node app"
-  },
-  "author": "Ivan Vityaev",
-  "license": "MIT",
-  "dependencies": {
-    "json-collections": "^0.2.0",
-    "lodash": "^4.17.4",
-    "moment": "^2.18.1",
-    "tmi.js": "^1.2.0"
-  }
+	"name": "xchbito-bot",
+	"version": "1.0.0",
+	"description": "",
+	"main": "desktopMain.js",
+	"scripts": {
+		"start": "node app",
+		"desktop": "export DEV=true && electron .",
+		"dist": "electron-builder -w",
+		"postinstall": "electron-builder install-app-deps"
+	},
+	"author": "Ivan Vityaev",
+	"license": "MIT",
+	"dependencies": {
+		"json-collections": "^0.2.0",
+		"lodash": "^4.17.4",
+		"moment": "^2.18.1",
+		"tmi.js": "^1.2.0"
+	},
+	"devDependencies": {
+		"electron": "^4.0.1",
+		"electron-builder": "^20.38.2"
+	},
+	"build": {
+		"extraFiles": [
+			"assets"
+		],
+		"appId": "xchbitobot.vip-software.ru",
+		"win": {
+			"target": "zip"
+		}
+	}
 }

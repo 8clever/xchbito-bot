@@ -2,6 +2,7 @@ const _ = require("lodash");
 
 const Jokes = require("./lib/Jokes");
 const Bot = require("./lib/Bot");
+const Rpg = require("./rpg/Rpg");
 
 let bot = new Bot({
 	clientId: "aqh3wb4avo6r5ig0dvfl1n3c0vvi7r",
@@ -12,7 +13,9 @@ let bot = new Bot({
 
 bot.connect().then(() => {
 	bot.color("Red");
+	
 	bot.addPlugin(Jokes);
+	bot.addPlugin(Rpg);
 
 	console.log("bot.connected!")
 });

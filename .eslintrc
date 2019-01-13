@@ -11,6 +11,7 @@
 		"spread" : true
 	},
 	"globals": {
+        "Promise": true
 	},
 	"extends": [
 		"eslint:recommended"

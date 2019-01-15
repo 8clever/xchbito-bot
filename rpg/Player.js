@@ -14,11 +14,20 @@ class Player {
      * @param {*} data.id - name of player
      * @param {*} data.exp - experiance
      * @param {*} data.zone - zone of player
+     * @param {*} data.arena - player on arena or not
+     * @param {*} data.arenaWins - count of wins on arena
      * @param {*} data.actionTime - remaining time to action
      * @param {*} data.gold - player gold
      */
     constructor (data) {
         if (!(data && data.id)) throw new Error("Id of player is required");
+
+        data.exp = data.exp || 0;
+        data.zone = data.zone || "Still on Heaven";
+        data.arena = data.arena || 0;
+        data.arenaWins = data.arenaWins || 0;
+        data.actionTime = data.actionTime || 0;
+        data.gold = data.gold || 0;
 
         this.lvlExpMultiplier = 100;
         this.data = data;
@@ -29,6 +38,9 @@ class Player {
     }
 
     set (key, value) {
+
+        if (key === "gold" && value < 0) value = 0;
+
         this.data[key] = value;
         this.persist();
     }

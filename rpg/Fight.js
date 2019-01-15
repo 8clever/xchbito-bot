@@ -122,7 +122,7 @@ class Fight {
         winner.set("gold", winner.get("gold") + 1);
         looser.set("gold", looser.get("gold") - 1);
 
-        let stat = `Fight winner: @${winner.get("id")}. Congratulation!`;
+        let stat = `${winner.get("id")} vs ${looser.get("id")}. Winner @${winner.get("id")}. Congratulation!`;
         this.stats.push(stat);
     }
 

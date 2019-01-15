@@ -103,10 +103,8 @@ class Rpg {
         let player2 = pvpPlayers[player2idx];
         let fight = new Fight(player, player2);
         let stats = fight.getResultOfGame();
-
-        _.each(stats, stat => {
-            this.bot.sendMessage(stat);
-        });
+        let lastStat = stats[stats.length - 1];
+        this.bot.sendMessage(lastStat);
     }   
 
     plusExp (player) {

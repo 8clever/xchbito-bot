@@ -75,7 +75,7 @@ class Rpg {
         let zoneName = zone.get("id");
         let action = zone.getRandomAction();
 
-        player.set("zone", zone);
+        player.set("zone", zoneName);
         action.fn(player);
         this.bot.sendMessage(`@${username} ${zoneName}: ${action.id}`);
     }

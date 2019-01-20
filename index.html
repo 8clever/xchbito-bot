@@ -10,6 +10,11 @@
 	<div id="root"></div>
 	Bot is runned!!!
 	<script>
+		let { ipcRenderer } = require("electron");
+		let config = ipcRenderer.sendSync('get-config');
+
+		process.env.APP_DATA_DIR = config.appDataDir;
+
 		require("./app.js")
 	</script>
 </body>

@@ -29,7 +29,11 @@
 		],
 		"appId": "xchbitobot.vip-software.ru",
 		"win": {
-			"target": "zip"
+			"target": "nsis"
+		},
+		"nsis": {
+			"allowToChangeInstallationDirectory": true,
+			"oneClick": false
 		}
 	}
 }

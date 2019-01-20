@@ -1,5 +1,3 @@
-const _ = require("lodash");
-
 const Jokes = require("./lib/Jokes");
 const Bot = require("./lib/Bot");
 const Rpg = require("./rpg/Rpg");

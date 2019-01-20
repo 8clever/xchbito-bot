@@ -1,5 +1,11 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 let mainWindow;
+
+ipcMain.on("get-config", evt => {
+	evt.returnValue = {
+		appDataDir: app.getPath("userData")
+	}
+});
 
 app.on('ready', createWindow);
 app.on('window-all-closed', function () {

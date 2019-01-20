@@ -1,7 +1,7 @@
 const _ = require("lodash");
-const Collection = require('json-collections');
+const Collection = require('../lib/Collection');
 const async = require("async");
-const __rpgPlayer = Collection({ name: "rpg_player" });
+const __rpgPlayer = new Collection({ name: "rpg_player" });
 const __q = async.queue(async task => {
     await task();
 }, 1);

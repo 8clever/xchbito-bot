@@ -23,8 +23,7 @@ app.on('activate', function () {
 function createWindow() {
 	mainWindow = new BrowserWindow({ 
 		width: 800, 
-		height: 600, 
-		icon: "assets/tabelidze.png"
+		height: 600
 	});
 	mainWindow.loadFile('index.html');
 

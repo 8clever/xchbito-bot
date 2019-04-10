@@ -14,6 +14,14 @@ class Rpg {
         this.bot.sendMessage(`@${user.username} lvl ${lvl} (${exp}/${nextLvlExp})`);
     }
 
+    cmdMsgs (msg, user) {
+        if (!/^!msgs/.test(msg)) return;
+
+        let player = Player.getPlayerById(user.username);
+        let msgs = player.get("msgs");
+        this.bot.sendMessage(`@${user.username} msgs: ${msgs}`);
+    }
+
     cmdStat (msg, user) {
         if (!/^!stat/.test(msg)) return;
         
@@ -77,7 +85,7 @@ class Rpg {
 
         player.set("zone", zoneName);
         action.fn(player);
-        this.bot.sendMessage(`@${username} ${zoneName}: ${action.id}`);
+        //this.bot.sendMessage(`@${username} ${zoneName}: ${action.id}`);
     }
 
     actionArena (player) {
@@ -104,12 +112,20 @@ class Rpg {
         let fight = new Fight(player, player2);
         let stats = fight.getResultOfGame();
         let lastStat = stats[stats.length - 1];
-        this.bot.sendMessage(lastStat);
+        //this.bot.sendMessage(lastStat);
     }   
 
     plusExp (player) {
         let exp = player.get("exp");
         player.set("exp", exp + 1);
+    }
+
+    plusMsg (msg, user) {
+        if (/^!/.test(msg)) return;
+        if (_.includes(this.bot.config.bots, user.username.toLowerCase())) return;
+
+        let player = Player.getPlayerById(user.username);
+        player.set("msgs", player.get("msgs") + 1);
     }
 
     constructor (bot) {
@@ -125,6 +141,9 @@ class Rpg {
             this.cmdLvl(msg, user);
             this.cmdArena(msg, user);
             this.cmdNotArena(msg, user);
+            this.cmdMsgs(msg, user);
+
+            this.plusMsg(msg, user);
         })
 
         setInterval(() => {

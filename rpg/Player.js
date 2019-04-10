@@ -28,6 +28,7 @@ class Player {
         data.arenaWins = data.arenaWins || 0;
         data.actionTime = data.actionTime || 0;
         data.gold = data.gold || 0;
+        data.msgs = data.msgs || 0;
 
         this.lvlExpMultiplier = 100;
         this.data = data;
